@@ -12,7 +12,7 @@
     "importHelpers": false,
     "module": "commonjs",
     "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": false,
     "removeComments": true,
     "target": "es6"
   },
