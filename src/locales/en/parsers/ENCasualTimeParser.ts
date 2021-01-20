@@ -15,6 +15,7 @@ export default class ENCasualTimeParser extends AbstractParserWithWordBoundaryCh
 
         switch (match[1].toLowerCase()) {
             case "afternoon":
+                component.assignStr("timePeriod", "afternoon");
                 component.imply("meridiem", Meridiem.PM);
                 component.imply("hour", 15);
                 break;

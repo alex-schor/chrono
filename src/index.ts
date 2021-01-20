@@ -47,7 +47,8 @@ export type Component =
     | "second"
     | "millisecond"
     | "meridiem"
-    | "timezoneOffset";
+    | "timezoneOffset"
+    | "timePeriod";
 
 export enum Meridiem {
     AM = 0,

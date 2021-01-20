@@ -8,6 +8,9 @@ dayjs.extend(quarterOfYear);
 export class ParsingComponents implements ParsedComponents {
     private knownValues: { [c in Component]?: number };
     private impliedValues: { [c in Component]?: number };
+    
+    private knownStrs: { [c in Component]?: string };
+    private impliedStrs: { [c in Component]?: string }
 
     constructor(refDate: Date, knownComponents?: { [c in Component]?: number }) {
         this.knownValues = {};
@@ -65,6 +68,20 @@ export class ParsingComponents implements ParsedComponents {
         delete this.impliedValues[component];
         return this;
     }
+    
+    implyStr(component: Component, value: string): ParsingComponents {
+        if (component in this.knownStrs) {
+            return this;
+        }
+        this.impliedStrs[component] = value;
+        return this;
+    }
+    
+    assignStr(component: Component, value: string): ParsingComponents {
+        this.knownStrs[component] = value;
+        delete this.impliedStrs[component];
+        return this;
+    }
 
     delete(component: Component) {
         delete this.knownValues[component];
@@ -102,7 +119,7 @@ export class ParsingComponents implements ParsedComponents {
     isOnlyDayMonthComponent(): boolean {
         return this.isCertain("day") && this.isCertain("month") && !this.isCertain("year");
     }
-
+    
     isValidDate(): boolean {
         let dateMoment = this.dayjs();
         if (this.isCertain("timezoneOffset")) {
