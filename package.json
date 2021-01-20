@@ -41,6 +41,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "postinstall": "tsc -p tsconfig.build.json",
     "prepare": "npm run build",
     "eslint": "eslint src test",
     "prettier": "npm run prettier:src && npm run prettier:test",
